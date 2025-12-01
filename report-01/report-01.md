@@ -75,6 +75,7 @@ GoogleスプレッドシートをAPI化し、SheetDBでCRUD操作を学ぶため
 2.  **READ操作（GET）**
     *   全データを取得するGETリクエストをPostmanで送信。
     *   クエリパラメータ `limit` と `offset` を使ってページネーションの動作確認を実施
+<img width="1408" height="869" alt="スクリーンショット 2025-12-01 131023" src="https://github.com/user-attachments/assets/11f67ada-8735-40ec-a6f7-849c67308859" />
 
 3.  **条件検索（GET with Query）**
     *   `name` が「田中」のレコードだけ取得するGETリクエストを実行
@@ -138,3 +139,4 @@ GoogleスプレッドシートをAPI化し、SheetDBでCRUD操作を学ぶため
 *   JavaScript（axios）でSheetDB APIを呼び出す簡単なWebページを作成
 
 ***
+
