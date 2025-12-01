@@ -79,21 +79,28 @@ GoogleスプレッドシートをAPI化し、SheetDBでCRUD操作を学ぶため
 
 3.  **条件検索（GET with Query）**
     *   `name` が「田中」のレコードだけ取得するGETリクエストを実行
+<img width="1414" height="729" alt="スクリーンショット 2025-12-01 131345" src="https://github.com/user-attachments/assets/ea6fe1cb-c4be-4229-a7ff-d180cfdceb96" />
 
 4.  **CREATE操作（POST）**
     *   新しいレコード（例：`id=101, name=田中, email=test@example.com, score=85`）を追加
+<img width="1430" height="591" alt="スクリーンショット 2025-12-01 131455" src="https://github.com/user-attachments/assets/e66f97ed-0846-49b1-8aff-e18077ed3a34" />
 
 5.  **複数レコード追加（POST）**
     *   `data` 配列で複数レコードを一度に追加する。
+<img width="1413" height="666" alt="スクリーンショット 2025-12-01 131530" src="https://github.com/user-attachments/assets/e1319b0c-3e73-4daf-a932-9e975c397933" />
 
 6.  **DELETE操作**
     *   `id=101` のレコードを削除するDELETEリクエストを送信
+<img width="1411" height="592" alt="スクリーンショット 2025-12-01 131612" src="https://github.com/user-attachments/assets/8eb91b58-5c6b-42fd-b69b-c12be7581cc6" />
 
 7.  **認証設定**
     *   SheetDBの管理画面でBasic認証を設定し、Postmanで認証付きリクエストを送信
+<img width="1416" height="307" alt="スクリーンショット 2025-12-01 131703" src="https://github.com/user-attachments/assets/fad7bce7-7f3a-415b-849d-fd068eaed69e" />
+<img width="1414" height="373" alt="スクリーンショット 2025-12-01 131741" src="https://github.com/user-attachments/assets/af423144-60a6-4e4c-89f1-2b79474ee663" />
 
 8. **エラーハンドリング**
     *   存在しない `id` を指定してDELETEを実行し、レスポンスのエラー内容を確認
+<img width="1405" height="600" alt="スクリーンショット 2025-12-01 131833" src="https://github.com/user-attachments/assets/61cbae6a-e227-4516-a43d-f168b7442f7a" />
 
 9. **PATCH操作（部分更新）** **修正課題**
     SheetDB無償API利用範囲で、適切なPATCH操作を行い、特定のデータを部分更新し、レスポンスを確認する：
@@ -105,6 +112,8 @@ GoogleスプレッドシートをAPI化し、SheetDBでCRUD操作を学ぶため
     }
     * レスポンス：　HTTPステイタスコード：　200 OK
 　　* curlコマンドでの動作確認も可能
+<img width="1411" height="477" alt="スクリーンショット 2025-12-01 131919" src="https://github.com/user-attachments/assets/eddede9f-15d8-4535-97f9-6d0c9fa82111" />
+<img width="1416" height="507" alt="スクリーンショット 2025-12-01 131935" src="https://github.com/user-attachments/assets/4117f7d8-9589-419d-8862-5b67dade37cf" />
 
 10. **RESTの4原則対応表**
     * 上記9の設問について、下記の4原則のどれを満たしているかを表にまとめよ：
@@ -112,15 +121,15 @@ GoogleスプレッドシートをAPI化し、SheetDBでCRUD操作を学ぶため
 **対応表**
 |番号|アドレス可能性|統一インターフェース|ステートレス|接続性|
 |-|-|-|-|-|
-|1|〇|〇|〇|〇|
-|2|〇|〇|〇|〇|
-|3|〇|〇|〇|〇|
-|4|〇|〇|〇|〇|
-|5|〇|〇|〇|〇|
-|6|〇|〇|〇|〇|
-|7|〇|〇|〇|〇|
-|8|〇|〇|〇|〇|
-|9|〇|〇|〇|〇|
+|1|〇||||
+|2||〇|〇||
+|3||〇|〇||
+|4||〇|〇||
+|5||〇|〇||
+|6||〇|〇||
+|7|||〇||
+|8||〇|〇||
+|9||〇|〇||
 
 
 
@@ -139,4 +148,5 @@ GoogleスプレッドシートをAPI化し、SheetDBでCRUD操作を学ぶため
 *   JavaScript（axios）でSheetDB APIを呼び出す簡単なWebページを作成
 
 ***
+
 
