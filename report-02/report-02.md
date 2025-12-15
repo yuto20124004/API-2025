@@ -61,7 +61,9 @@ WebAPIのレスポンス形式としてJSONが主流になった理由として�
   - レスポンスヘッダ（`Content-Type`など）
   - レスポンスJSONのスクリーンショット
 <img width="1170" height="547" alt="スクリーンショット 2025-12-09 113534" src="https://github.com/user-attachments/assets/2847c864-7747-4fbb-8dc2-2a9a45a7603a" />
-<img width="1244" height="837" alt="スクリーンショット 2025-12-09 113555" src="https://github.com/user-attachments/assets/e8694939-4980-4e34-a56f-05749d2f248d" />
+
+<img width="1416" height="875" alt="image" src="https://github.com/user-attachments/assets/396b42b9-ed20-4ebf-9ede-2e9529a1c6e0" />
+
 <img width="1160" height="866" alt="スクリーンショット 2025-12-09 113807" src="https://github.com/user-attachments/assets/6f19f2d0-1af7-4bf7-b7a3-b9bfecfc1eae" />
 
 ---
