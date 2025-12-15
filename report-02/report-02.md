@@ -165,7 +165,10 @@ APIレスポンスで日付を扱う場合、RFC 3339（ISO8601）形式が推�
 - **報告内容**：
   - それぞれのレスポンスのスクリーンショット
     ・application/json
+    <img width="1194" height="830" alt="image" src="https://github.com/user-attachments/assets/8304c1f1-6ccb-4702-91dd-4edce006f6b0" />
     ・text/html
+    <img width="1260" height="839" alt="image" src="https://github.com/user-attachments/assets/fb157325-aea2-43d8-86ae-033981aba10c" />
+
   - 違いの説明
 
 ---
@@ -175,9 +178,7 @@ WebAPI利用時に発生しうるXSSとCSRF攻撃について、**攻撃の仕�
 
 ・XSSはユーザ入力に悪意あるスクリプトを埋め込みそれをほかのユーザのブラウザ上で実行させる攻撃。被害例としては、なりすましログインやフィッシング画面表示による個人情報漏洩が挙げられる。対策としては出力時エスケープの徹底、入力値のバリデーション、CSPの導入が挙げられる。
 ・CSRFはユーザがログイン済みであることを悪用し、攻撃者が用意した別サイトから意図しないリクエストを自動送信させる攻撃。ブラウザは自動的にCookieを送信するためAPI側は正規ユーザの操作と誤認する。被害例はパスワード・メールアドレスの変更、不正な投稿やデータの削除、管理者権限での設定変更。対策は、CSRFトークンの利用やSameSite Cookie属性の設定、重要操作をPOST/PUT/DELETEに限定するがあげられる。
-・Same-Origin Polisy
-
-
+・Same-Origin Polisyはブラウザの基本的なセキュリティ規制が主な仕事。CORS（Cross-Origin Resource Sharing）はSOPを安全に緩和する仕組み。この二つの関係としては「SOPがデータの壁を作るのが仕事でCORSがサーバーがその壁に扉を開ける仕組み」である。
 
 
 ---
