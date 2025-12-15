@@ -65,11 +65,10 @@ WebAPIのレスポンス形式としてJSONが主流になった理由として�
   - ステータスコード
   - レスポンスヘッダ（`Content-Type`など）
   - レスポンスJSONのスクリーンショット
-<img width="1170" height="547" alt="スクリーンショット 2025-12-09 113534" src="https://github.com/user-attachments/assets/2847c864-7747-4fbb-8dc2-2a9a45a7603a" />
+<img width="1166" height="828" alt="スクリーンショット 2025-12-15 114740" src="https://github.com/user-attachments/assets/53e0263f-8395-4af8-a3fa-3ca47db98e28" />
+<img width="1385" height="202" alt="スクリーンショット 2025-12-15 114800" src="https://github.com/user-attachments/assets/736c0d14-5115-411f-8847-7bbe5aa8b9d6" />
+<img width="1199" height="837" alt="image" src="https://github.com/user-attachments/assets/0e2395ef-21d4-4080-ad57-7f38c8247fa7" />
 
-<img width="1416" height="875" alt="image" src="https://github.com/user-attachments/assets/396b42b9-ed20-4ebf-9ede-2e9529a1c6e0" />
-
-<img width="1160" height="866" alt="スクリーンショット 2025-12-09 113807" src="https://github.com/user-attachments/assets/6f19f2d0-1af7-4bf7-b7a3-b9bfecfc1eae" />
 
 ---
 
@@ -172,16 +171,20 @@ APIレスポンスで日付を扱う場合、RFC 3339（ISO8601）形式が推�
 - **報告内容**：
   - それぞれのレスポンスのスクリーンショット
     ・application/json
-    <img width="1194" height="830" alt="image" src="https://github.com/user-attachments/assets/8304c1f1-6ccb-4702-91dd-4edce006f6b0" />
-    ・text/html
-    <img width="1260" height="839" alt="image" src="https://github.com/user-attachments/assets/fb157325-aea2-43d8-86ae-033981aba10c" />
+    <img width="951" height="745" alt="スクリーンショット 2025-12-15 113308" src="https://github.com/user-attachments/assets/60e6f5aa-1e1f-4b18-90c6-9555c55089b2" />
+    <img width="1401" height="146" alt="スクリーンショット 2025-12-15 113359" src="https://github.com/user-attachments/assets/a5f7c38b-16b7-402b-ad01-7bbd2d115729" />
 
-  - 違いの説明  
-    主な用途、データ方式、処理対象、APIの向き不向きに違いがある。  
-    ・application/json  
-    Web API、JSON、プログラム、とても向いている  
-    ・text/html  
-    Webページ、HTML、人、向いていない
+
+    ・text/html
+    <img width="1026" height="699" alt="スクリーンショット 2025-12-15 113504" src="https://github.com/user-attachments/assets/f950a2d6-142f-4bea-a533-01575b96618a" />
+    <img width="1393" height="240" alt="スクリーンショット 2025-12-15 113031" src="https://github.com/user-attachments/assets/7ffb70f9-600f-4761-8ec3-fc55527729b7" />
+
+
+
+  - 違いの説明
+    text/htmlのほうには以下の二つが追加されていた。
+   Server-Timing:cfCacheStatus;desc="DYNAMIC",
+   Server-Timing:cfEdge;dur=5,cfOrigin;dur=235
 ---
 
 ### 問9：セキュリティ対策（XSS・CSRF）
