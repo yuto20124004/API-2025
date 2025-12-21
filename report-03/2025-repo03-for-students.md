@@ -65,7 +65,111 @@ APIとは、プログラム同士が安全に会話するための共通ルー�
 
 ```python
 # FastAPI の主要コードをここに貼る
+def verify_token():
+    return {"user_id": 1}
 
+class TodoBase(BaseModel):
+    title: str
+
+class TodoCreate(TodoBase):
+    pass
+
+class Todo(TodoBase):
+    id: int
+    done: bool
+
+class TodoUpdate(BaseModel):
+    title: str | None = None
+    done: bool | None = None
+
+
+app = FastAPI(
+    title="Fast API",
+    version="1.0.0"
+)
+
+@app.get("/todos", tags=["default"])
+async def Read_Todos():
+    return [
+        {
+            "id":"1",
+            "title":"勉強",
+            "done":"False"
+        },
+        {
+            "id":"2",
+            "title":"バイト",
+            "done":"False"
+        },
+        {
+            "id":"3",
+            "title":"課題",
+            "done":"False"
+        }
+    ]
+
+@app.post("/todos", response_model=Todo, status_code=status.HTTP_201_CREATED, tags=["default"])
+async def Create_Todo(
+    todo: TodoCreate, 
+    user: Dict = Depends(verify_token)
+):
+    
+    global todo_id_counter
+    
+    new_todo = Todo(
+        id=todo_id_counter,
+        title=todo.title,
+        done=False
+    )
+    
+    todos_db[todo_id_counter] = new_todo
+    todo_id_counter += 1
+    
+    return new_todo
+
+@app.put("/todos/{todo_id}", response_model=Todo, tags=["default"])
+async def update_Todo(
+    todo_id: int,
+    todo_update: TodoUpdate,
+    user: Dict = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    todo = db.query(TodoModel).filter(TodoModel.id == todo_id).first()
+    
+    if not todo:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Todo with id {todo_id} not found"
+        )
+
+    update_data = todo_update.model_dump(exclude_unset=True)
+    
+    for field, value in update_data.items():
+        setattr(existing_todo, field, value)
+    
+    db.commit()
+    db.refresh(todo)
+
+    return todo
+
+@app.delete("/todos/{todo_id}", status_code=status.HTTP_204_NO_CONTENT, tags=["default"])
+async def delete_todo(
+    todo_id: int, 
+    user: Dict = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    todo = db.query(TodoModel).filter(TodoModel.id == todo_id).first()
+
+    if not todo:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Todo with id {todo_id} not found"
+        )
+    
+    db.delete(todo)
+    db.commit()
+    
+    return None
 ```
 
 ---
@@ -141,6 +245,7 @@ APIとは、プログラム同士が安全に会話するための共通ルー�
 * [ ] Streamlit UI の画像を貼った
 * [ ] 学習したことを 100 字以上書いた
 * [ ] SQLite / SQLAlchemy の加点欄（使った場合のみ）
+
 
 
 
