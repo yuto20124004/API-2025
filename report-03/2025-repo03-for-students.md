@@ -178,7 +178,7 @@ async def delete_todo(
 
 | 操作         | 貼付欄 |
 | ---------- | --- |
-| POST（新規追加） |  <img width="1419" height="911" alt="image" src="https://github.com/user-attachments/assets/e9b8a3b6-9900-40ee-90ff-4594c8582c8b" />
+| POST（新規追加） |  <img width="1419" height="911" alt="image" src="https://github.com/user-attachments/assets/e9b8a3b6-9900-40ee-90ff-4594c8582c8b" />  
    <img width="1401" height="603" alt="image" src="https://github.com/user-attachments/assets/cae33ea5-5c31-4d4d-acd6-358338294544" />|
 | GET（一覧取得）  |  <img width="1417" height="944" alt="image" src="https://github.com/user-attachments/assets/41a598b7-658f-4e4b-9eda-d9b52485b265" />
 <img width="1414" height="300" alt="image" src="https://github.com/user-attachments/assets/1fac23f9-676a-4e41-865d-13fca49d1522" />|
@@ -247,6 +247,7 @@ async def delete_todo(
 * [ ] Streamlit UI の画像を貼った
 * [ ] 学習したことを 100 字以上書いた
 * [ ] SQLite / SQLAlchemy の加点欄（使った場合のみ）
+
 
 
 
