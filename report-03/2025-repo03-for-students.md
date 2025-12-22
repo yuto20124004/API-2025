@@ -150,13 +150,11 @@ def Delete_todo(todo_id: int):
 | 操作         | 貼付欄 |
 | ---------- | --- |
 | POST（新規追加） |  <img width="1419" height="911" alt="image" src="https://github.com/user-attachments/assets/e9b8a3b6-9900-40ee-90ff-4594c8582c8b" />  
-   <img width="1401" height="603" alt="image" src="https://github.com/user-attachments/assets/cae33ea5-5c31-4d4d-acd6-358338294544" />
-   <img width="1094" height="430" alt="image" src="https://github.com/user-attachments/assets/a7c8d72d-9f1e-4d5e-ac1f-e60e65281a17" />|
+   <img width="1401" height="603" alt="image" src="https://github.com/user-attachments/assets/cae33ea5-5c31-4d4d-acd6-358338294544" />|
 | GET（一覧取得）  |  <img width="1417" height="944" alt="image" src="https://github.com/user-attachments/assets/41a598b7-658f-4e4b-9eda-d9b52485b265" />
 <img width="1414" height="300" alt="image" src="https://github.com/user-attachments/assets/1fac23f9-676a-4e41-865d-13fca49d1522" />|
 | PUT（更新）    |  <img width="1092" height="833" alt="image" src="https://github.com/user-attachments/assets/1def3930-b2e3-4439-90d9-73c4d00a93b4" />
-  <img width="1089" height="770" alt="image" src="https://github.com/user-attachments/assets/8ddbe91e-05f8-4c29-aba5-6237373c8f83" />
- <img width="1088" height="787" alt="image" src="https://github.com/user-attachments/assets/5c073a72-6e09-4093-8ba3-d625d518e21a" />|
+  <img width="1089" height="770" alt="image" src="https://github.com/user-attachments/assets/8ddbe91e-05f8-4c29-aba5-6237373c8f83" />|
 | DELETE（削除） |  <img width="1082" height="633" alt="image" src="https://github.com/user-attachments/assets/80aa2300-6dec-4d0e-b61f-0b3fe8559d54" />
   <img width="1076" height="749" alt="image" src="https://github.com/user-attachments/assets/61e74be0-a304-4772-994f-08dd21647963" />|
 
@@ -167,9 +165,10 @@ def Delete_todo(todo_id: int):
 
 | 画面キャプチャ       | 貼付欄 |
 | ------------- | --- |
-| 実行画面          |  <img width="1910" height="1043" alt="image" src="https://github.com/user-attachments/assets/0d5b83c7-e814-4a0f-8415-46d5ad1f73f8" />
+| 実行画面          | <img width="953" height="679" alt="image" src="https://github.com/user-attachments/assets/63ac1449-1c8b-4ad4-acb0-5aa991753469" />
+  |
+| 操作例（追加・更新・削除） | <img width="781" height="86" alt="image" src="https://github.com/user-attachments/assets/7998615b-9cf8-4699-b4ba-0c615d5b0494" />
    |
-| 操作例（追加・更新・削除） |     |
 
 ---
 
@@ -179,16 +178,16 @@ def Delete_todo(todo_id: int):
 
 | ログ例（貼付欄） |
 | -------- |
-|    <img width="994" height="149" alt="image" src="https://github.com/user-attachments/assets/9005fc17-bc19-4d47-a843-027cfabfbc06" />
-<img width="619" height="130" alt="image" src="https://github.com/user-attachments/assets/c639c507-b68d-48bf-8bbd-9847b0d1c752" />
-
-      |
+|   <img width="994" height="149" alt="image" src="https://github.com/user-attachments/assets/9005fc17-bc19-4d47-a843-027cfabfbc06" />
+    <img width="619" height="130" alt="image" src="https://github.com/user-attachments/assets/c639c507-b68d-48bf-8bbd-9847b0d1c752" />
+|
 
 ---
 
 ## 8. 学習したこと・感想（100文字以上）
 
 > **記入欄：**
+今回の課題を通して、FastAPI と Streamlit を連携させた Web アプリ開発の基礎を学んだ。特に、API 側で状態を正しく保持する重要性や、Streamlit が再描画のたびにコードを再実行する仕組みを理解できたことは大きな学びである。また、OpenAPI やサーバログを用いて通信を確認することで、フロントエンドとバックエンドの責務分離とデバッグの考え方を実践的に身につけることができた。
 
 
 ## チャレンジ課題：  9. SQLite / SQLAlchemy 導入内容
@@ -226,6 +225,7 @@ def Delete_todo(todo_id: int):
 * [ ] Streamlit UI の画像を貼った
 * [ ] 学習したことを 100 字以上書いた
 * [ ] SQLite / SQLAlchemy の加点欄（使った場合のみ）
+
 
 
 
