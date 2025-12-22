@@ -155,8 +155,10 @@ def Delete_todo(todo_id: int):
 <img width="1414" height="300" alt="image" src="https://github.com/user-attachments/assets/1fac23f9-676a-4e41-865d-13fca49d1522" />|
 | PUT（更新）    |  <img width="1092" height="833" alt="image" src="https://github.com/user-attachments/assets/1def3930-b2e3-4439-90d9-73c4d00a93b4" />
   <img width="1089" height="770" alt="image" src="https://github.com/user-attachments/assets/8ddbe91e-05f8-4c29-aba5-6237373c8f83" />|
-| DELETE（削除） |  <img width="1082" height="633" alt="image" src="https://github.com/user-attachments/assets/80aa2300-6dec-4d0e-b61f-0b3fe8559d54" />
-  <img width="1076" height="749" alt="image" src="https://github.com/user-attachments/assets/61e74be0-a304-4772-994f-08dd21647963" />|
+| DELETE（削除） |  <img width="1414" height="746" alt="image" src="https://github.com/user-attachments/assets/841a68cf-8bd2-467d-bea6-170f64701f63" />
+<img width="1392" height="274" alt="image" src="https://github.com/user-attachments/assets/a1567921-b23e-4b6e-881f-b8e080729f21" />
+
+|
 
 
 ---
@@ -179,7 +181,7 @@ def Delete_todo(todo_id: int):
 | ログ例（貼付欄） |
 | -------- |
 |   <img width="994" height="149" alt="image" src="https://github.com/user-attachments/assets/9005fc17-bc19-4d47-a843-027cfabfbc06" />
-    <img width="619" height="130" alt="image" src="https://github.com/user-attachments/assets/c639c507-b68d-48bf-8bbd-9847b0d1c752" />
+<img width="619" height="130" alt="image" src="https://github.com/user-attachments/assets/c639c507-b68d-48bf-8bbd-9847b0d1c752" />
 |
 
 ---
@@ -225,6 +227,7 @@ def Delete_todo(todo_id: int):
 * [ ] Streamlit UI の画像を貼った
 * [ ] 学習したことを 100 字以上書いた
 * [ ] SQLite / SQLAlchemy の加点欄（使った場合のみ）
+
 
 
 
