@@ -179,7 +179,10 @@ def Delete_todo(todo_id: int):
 
 | ログ例（貼付欄） |
 | -------- |
-|          |
+|    <img width="994" height="149" alt="image" src="https://github.com/user-attachments/assets/9005fc17-bc19-4d47-a843-027cfabfbc06" />
+<img width="619" height="130" alt="image" src="https://github.com/user-attachments/assets/c639c507-b68d-48bf-8bbd-9847b0d1c752" />
+
+      |
 
 ---
 
@@ -223,6 +226,7 @@ def Delete_todo(todo_id: int):
 * [ ] Streamlit UI の画像を貼った
 * [ ] 学習したことを 100 字以上書いた
 * [ ] SQLite / SQLAlchemy の加点欄（使った場合のみ）
+
 
 
 
