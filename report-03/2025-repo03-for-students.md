@@ -66,97 +66,54 @@ APIとは、プログラム同士が安全に会話するための共通ルー�
 ```python
 # FastAPI の主要コードをここに貼る
 
-from fastapi import FastAPI, HTTPException, Response
-from pydantic import BaseModel
-from typing import List
-import sqlite3
+from fastapi import FastAPI, Depends, HTTPException
+from sqlalchemy.orm import Session
+
+from database import SessionLocal
+from models import Todo as TodoModel
+from schemas import Todo, TodoCreate, TodoUpdate
 
 app = FastAPI()
 
 def get_db():
-    return sqlite3.connect("todos.db", check_same_thread=False)
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
-def init_db():
-    conn = get_db()
-    cur = conn.cursor()
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS todos (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            done BOOLEAN NOT NULL
-        )
-    """)
-    conn.commit()
-    conn.close()
-
-init_db()
-
-class Todo(BaseModel):
-    id: int
-    title: str
-    done: bool
-
-class TodoCreate(BaseModel):
-    title: str
-
-class TodoUpdate(BaseModel):
-    done: bool
-
-
-todos: List[Todo] = [
-    Todo(id=1, title="勉強", done=False),
-    Todo(id=2, title="バイト", done=False),
-    Todo(id=3, title="課題", done=False),
-]
-next_id = max(todo.id for todo in todos) + 1
-
-@app.get("/todos", response_model=List[Todo])
-def get_todos():
-    conn = get_db()
-    cur = conn.cursor()
-    rows = cur.execute("SELECT id, title, done FROM todos").fetchall()
-    conn.close()
-
-    return [
-        {"id": r[0], "title": r[1], "done": bool(r[2])}
-        for r in rows
-    ]
+@app.get("/todos", response_model=list[Todo])
+def get_todos(db: Session = Depends(get_db)):
+    return db.query(TodoModel).all()
 
 @app.post("/todos", response_model=Todo)
-def create_todo(todo: TodoCreate):
-    conn = get_db()
-    cur = conn.cursor()
-    cur.execute(
-        "INSERT INTO todos (title, done) VALUES (?, ?)",
-        (todo.title, False)
-    )
-    conn.commit()
-    todo_id = cur.lastrowid
-    conn.close()
-
-    return {"id": todo_id, "title": todo.title, "done": False}
+def create_todo(todo: TodoCreate, db: Session = Depends(get_db)):
+    db_todo = TodoModel(title=todo.title, done=False)
+    db.add(db_todo)
+    db.commit()
+    db.refresh(db_todo)
+    return db_todo
 
 @app.put("/todos/{todo_id}", response_model=Todo)
-def update_todo(todo_id: int, todo: TodoUpdate):
-    conn = get_db()
-    cur = conn.cursor()
-    cur.execute(
-        "UPDATE todos SET done = ? WHERE id = ?",
-        (todo.done, todo_id)
-    )
-    conn.commit()
-    conn.close()
+def update_todo(todo_id: int, todo: TodoUpdate, db: Session = Depends(get_db)):
+    db_todo = db.query(TodoModel).filter(TodoModel.id == todo_id).first()
+    if not db_todo:
+        raise HTTPException(status_code=404)
 
-    return {"id": todo_id, "title": "", "done": todo.done}
-
+    db_todo.done = todo.done
+    db.commit()
+    db.refresh(db_todo)
+    return db_todo
 
 @app.delete("/todos/{todo_id}", status_code=204)
-def delete_todo(todo_id: int):
-    conn = get_db()
-    cur = conn.cursor()
-    cur.execute("DELETE FROM todos WHERE id = ?", (todo_id,))
-    conn.commit()
-    conn.close()
+def delete_todo(todo_id: int, db: Session = Depends(get_db)):
+    db_todo = db.query(TodoModel).filter(TodoModel.id == todo_id).first()
+    if not db_todo:
+        raise HTTPException(status_code=404)
+
+    db.delete(db_todo)
+    db.commit()
+
 
 
 ```
@@ -247,6 +204,7 @@ Todo(id, title, done)
 * [ ] Streamlit UI の画像を貼った
 * [ ] 学習したことを 100 字以上書いた
 * [ ] SQLite / SQLAlchemy の加点欄（使った場合のみ）
+
 
 
 
