@@ -66,12 +66,30 @@ APIとは、プログラム同士が安全に会話するための共通ルー�
 ```python
 # FastAPI の主要コードをここに貼る
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel
 from typing import List
+import sqlite3
 
 app = FastAPI()
 
+def get_db():
+    return sqlite3.connect("todos.db", check_same_thread=False)
+
+def init_db():
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS todos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            done BOOLEAN NOT NULL
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+init_db()
 
 class Todo(BaseModel):
     id: int
@@ -85,61 +103,61 @@ class TodoUpdate(BaseModel):
     done: bool
 
 
-todos: List[Todo] = [ {
-                        "id":1,
-                        "title":"勉強",
-                        "done":False
-                      },
-                      {
-                        "id":2,
-                        "title":"バイト",
-                        "done":False
-                      },
-                      {
-                        "id":3,
-                        "title":"課題",
-                        "done":False
-                      },
-                    ]
-next_id = 0
+todos: List[Todo] = [
+    Todo(id=1, title="勉強", done=False),
+    Todo(id=2, title="バイト", done=False),
+    Todo(id=3, title="課題", done=False),
+]
+next_id = max(todo.id for todo in todos) + 1
 
 @app.get("/todos", response_model=List[Todo])
-def Get_todos():
-    return todos
+def get_todos():
+    conn = get_db()
+    cur = conn.cursor()
+    rows = cur.execute("SELECT id, title, done FROM todos").fetchall()
+    conn.close()
 
-
+    return [
+        {"id": r[0], "title": r[1], "done": bool(r[2])}
+        for r in rows
+    ]
 
 @app.post("/todos", response_model=Todo)
-def Create_todo(todo_create: TodoCreate):
-    global next_id
-    todo = Todo(
-        id=next_id,
-        title=todo_create.title,
-        done=False
+def create_todo(todo: TodoCreate):
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO todos (title, done) VALUES (?, ?)",
+        (todo.title, False)
     )
-    todos.append(todo)
-    next_id += 1
-    return todo
+    conn.commit()
+    todo_id = cur.lastrowid
+    conn.close()
 
-
+    return {"id": todo_id, "title": todo.title, "done": False}
 
 @app.put("/todos/{todo_id}", response_model=Todo)
-def Update_todo(todo_id: int, todo_update: TodoUpdate):
-    for todo in todos:
-        if todo.id == todo_id:
-            todo.done = todo_update.done
-            return todo
-    raise HTTPException(status_code=404, detail="Todo not found")
+def update_todo(todo_id: int, todo: TodoUpdate):
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute(
+        "UPDATE todos SET done = ? WHERE id = ?",
+        (todo.done, todo_id)
+    )
+    conn.commit()
+    conn.close()
+
+    return {"id": todo_id, "title": "", "done": todo.done}
 
 
+@app.delete("/todos/{todo_id}", status_code=204)
+def delete_todo(todo_id: int):
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM todos WHERE id = ?", (todo_id,))
+    conn.commit()
+    conn.close()
 
-@app.delete("/todos/{todo_id}")
-def Delete_todo(todo_id: int):
-    for i, todo in enumerate(todos):
-        if todo.id == todo_id:
-            todos.pop(i)
-            return {"message": "Todo deleted"}
-    raise HTTPException(status_code=404, detail="Todo not found")
 
 ```
 
@@ -227,6 +245,7 @@ def Delete_todo(todo_id: int):
 * [ ] Streamlit UI の画像を貼った
 * [ ] 学習したことを 100 字以上書いた
 * [ ] SQLite / SQLAlchemy の加点欄（使った場合のみ）
+
 
 
 
