@@ -107,6 +107,28 @@ flowchart TD
   C -->|HTTP Response| B
   B -->|完了表示| A
 ````
+- 予約変更・キャンセル
+```mermaid
+flowchart TD
+  A[利用者 / スタッフ] --> B[Web/モバイル]
+  B --> C[API Gateway]
+  C --> D[Reservation Service]
+  D -->|変更期限チェック| E[(Reservation DB)]
+  D -->予約更新　or　キャンセル| E
+  D --> C
+  C --> B
+  B --> A
+````
+- 外部サービス連携
+```mermaid
+flowchart TD
+  A[外部予約サイト] -->|予約データ送信| C[API Gateway]
+  C -->|APIキー認証| D[Reservation Service]
+  D -->|予約登録| E
+  D -->|通知要求| F[通知サービス]
+  D --> C
+  C --> A
+````
 ***
 
 ## 5. 関連技術・先行事例
@@ -277,6 +299,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
