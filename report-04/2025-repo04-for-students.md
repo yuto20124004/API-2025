@@ -94,14 +94,18 @@ flowchart TD
   D --> E[(DB)]
   C --> F[外部サービス]
 ````
-
+- 予約作成
 ```mermaid
 flowchart TD
-  A[アクター] -->|入力| B[Web/モバイル]
-  B --> C[API Gateway]
-  C --> D[Service]
-  D --> E[(DB)]
-  C --> F[外部サービス]
+  A[利用者 / スタッフ] -->|予約情報入力| B[Web/モバイル]
+  B -->|HTTP Request| C[API Gateway]
+  C -->|認証・認可| D[Reservation Service]
+  D -->|空き状況確認| E[(Reservation DB)]
+  D -->|予約重複チェック| E
+  D -->|予約登録| E
+  D -->|結果返却| C
+  C -->|HTTP Response| B
+  B -->|完了表示| A
 ````
 ***
 
@@ -273,6 +277,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
