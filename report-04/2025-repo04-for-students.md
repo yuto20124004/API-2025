@@ -145,9 +145,9 @@ flowchart TD
       - 外部連携
         - カレンダー連携(Google Calendar APIなど)
 *   参考標準・事例（URL可）：
-   - 先行事例：JICOO(ジコー)
-   - URL:https://prtimes.jp/main/html/rd/p/000000028.000063044.html?utm_source=chatgpt.com
-     - 予約APIとWebhook連携で外部システムと情報共有可能
+     - 先行事例：JICOO(ジコー)
+     - URL:https://prtimes.jp/main/html/rd/p/000000028.000063044.html?utm_source=chatgpt.com
+       - 予約APIとWebhook連携で外部システムと情報共有可能
 *   学習内容との対応（第10〜12回）：
 
 ***
@@ -312,6 +312,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
