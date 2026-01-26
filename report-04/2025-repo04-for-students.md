@@ -265,7 +265,15 @@ flowchart TD
 
 | 機能ID | 概要 | 主要ユースケース | 優先度(P1/P2) |
 | ---- | -- | -------- | ---------- |
-| F-01 |    | UC-\_\_  | P1         |
+| F-01 |  予約新規作成  | UC-01\予約登録  | P1         |
+| F-02 |  予約情報一覧  | UC-02\予約参照  | P1         |
+| F-03 |  予約情報変更  | UC-03\予約変更  | P1         |
+| F-04 |  予約キャンセル  | UC-04\予約キャンセル  | P1         |
+| F-05 |  来店ステータス  | UC-05\来店管理  | P1         |
+| F-06 |  店舗情報  | UC-06\店舗参照  | P1         |
+| F-07 |  予約管理  | UC-07\店舗運用  | P1         |
+| F-08 |  客の情報  | UC-08\客管理  | P2         |
+| F-09 |  外部APIからの予約登録・参照  | UC-09\外部連携  | P2         |
 
 ### 7.3 エンドポイント仕様
 
@@ -273,6 +281,17 @@ flowchart TD
 | - | ---- | --------- | ---------------- | ------------------ | ------------------- | ------ | ------- |
 | 1 | GET  | /products | query: page,size | 200: list<Product> | 200/400/500         | public | 100/min |
 | 2 | POST | /orders   | body: OrderInput | 201: Order         | 201/400/401/403/500 | user   | 60/min  |
+
+| 1 | GET | /stores | query: page,size | 200: list<Store> | 200/400/500 | public | 100/min |
+| 2 | GET | /stores/{storeld} | path: storeId | 200: Store | 200/404/500 | public | 100/min |
+| 3 | GET | /reservations | query: storeId,date | 200: list<Reservaiton> | 200/400/401/403/500 | operator | 60/min |
+| 4 | GET | /reservations/{id} | path: riservationId | 200: Reservaiton | 200/401/403/404/500 | owner,operator | 60/min |
+| 5 | POST | /reservations | body: ReserveationInput | 201: Reservaiton | 200/400/401/409/500 | customer | 30/min |
+| 6 | PUT | /reservations/{id} | path + body | 200: Reservaiton | 200/400/401/403/404/409/500 | owner,operator | 30/min |
+| 7 | DELETE | /reservations/{id} | path: reservationId | 204: No Content | 204/401/403/404/500 | owner,operator | 20/min |
+| 8 | PATCH | /stores | body: status | 200: Reservaiton | 200/400/401/403/409/500 | customer | 60/min |
+| 9 | POST | /external/reservations | body: ReserveationInput | 201: Reservaiton | 201/400/401/403/409/500 | external | 10/min |
+
 
 *   エラー仕様（例）：
     *   400: ValidationError（フィールド：message, field, code）
@@ -398,6 +417,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
