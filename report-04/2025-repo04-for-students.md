@@ -279,6 +279,7 @@ flowchart TD
 
 | # | メソッド | パス        | リクエスト（要約）        | レスポンス（要約）          | ステータス               | 認可     | レート制限   |
 | - | ---- | --------- | ---------------- | ------------------ | ------------------- | ------ | ------- |
+例
 | 1 | GET  | /products | query: page,size | 200: list<Product> | 200/400/500         | public | 100/min |
 | 2 | POST | /orders   | body: OrderInput | 201: Order         | 201/400/401/403/500 | user   | 60/min  |
 
@@ -288,8 +289,8 @@ flowchart TD
 | 4 | GET | /reservations/{id} | path: riservationId | 200: Reservaiton | 200/401/403/404/500 | owner,operator | 60/min |
 | 5 | POST | /reservations | body: ReserveationInput | 201: Reservaiton | 200/400/401/409/500 | customer | 30/min |
 | 6 | PUT | /reservations/{id} | path + body | 200: Reservaiton | 200/400/401/403/404/409/500 | owner,operator | 30/min |
-| 7 | DELETE | /reservations/{id} | path: reservationId | 204: No Content | 204/401/403/404/500 | owner,operator | 20/min |
-| 8 | PATCH | /stores | body: status | 200: Reservaiton | 200/400/401/403/409/500 | customer | 60/min |
+| 7 | DELETE | /reservations/{id}/status | path: reservationId | 204: No Content | 204/401/403/404/500 | owner,operator | 20/min |
+| 8 | PATCH | /customers/me | body: status | 200: Reservaiton | 200/400/401/403/409/500 | customer | 30/min |
 | 9 | POST | /external/reservations | body: ReserveationInput | 201: Reservaiton | 201/400/401/403/409/500 | external | 10/min |
 
 
@@ -417,6 +418,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
