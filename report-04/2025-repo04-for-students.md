@@ -204,7 +204,7 @@ flowchart TD
   - 店舗（店舗ID、店舗名、営業時間、作成日時、更新日時）
   - スタッフ（スタッフID、所属店舗ID、氏名、権限区分、電話番号、作成日時、更新日時）
   - 客（客ID、氏名、メールアドレス、電話番号、作成日時、更新日時）
-  - 予約（予約ID、店舗ID、客ID、予約状態、登録元、作成日時、更新日時）
+  - 予約（予約ID、店舗ID、客ID、予約開始時間、予約終了時間、予約状態、登録元、作成日時、更新日時）
 *   整合性ルール／制約：
   - 参照整合性（予約は対象の店舗に紐づく）
   - 時間制約（同一店舗において同一の時間帯の同じ席での予約は重複不可）
@@ -217,9 +217,7 @@ flowchart TD
     STORE {
         bigint store_id PK
         string store_name
-        string address
         string business_hours
-        boolean is_active
         datetime created_at
         datetime updated_at
     }
@@ -229,8 +227,7 @@ flowchart TD
         bigint store_id FK
         string name
         string role
-        string email
-        boolean is_active
+        string phone
         datetime created_at
         datetime updated_at
     }
@@ -248,7 +245,6 @@ flowchart TD
         bigint reservation_id PK
         bigint store_id FK
         bigint customer_id FK
-        bigint staff_id FK
         datetime start_time
         datetime end_time
         string status
@@ -402,6 +398,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
