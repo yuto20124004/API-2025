@@ -149,7 +149,8 @@ flowchart TD
      - URL:https://prtimes.jp/main/html/rd/p/000000028.000063044.html?utm_source=chatgpt.com
        - 予約APIとWebhook連携で外部システムと情報共有可能
 *   学習内容との対応（第10〜12回）：
-
+  - 後方互換性
+  - レスポンスレート
 ***
 
 ## 6. 提案技術の比較（選定理由）
@@ -301,11 +302,14 @@ flowchart TD
 
 ### 7.4 認証・認可・バージョニング等
 
-*   認証方式：例）OAuth2/OIDC（Bearer Token）
-*   認可：ロールベース（admin/user/external）
-*   バージョニング：例）`/v1` パスバージョン
-*   レート制限：例）IP+トークン単位 100 req/min
-*   エラーハンドリング：一貫したエラーレスポンス（`code`, `message`, `traceId`）
+*   認証方式：OAuth2
+*   認可：ロールベース（admin/operator/customer/external）
+*   バージョニング：/api/v1
+*   レート制限：
+    - GET:60~120 req/min
+    - POST/PUT:20~60 req/min
+    - External:10~30 req/min
+*   エラーハンドリング：（`code`, `message`, `traceId`）
 
 ### 7.5 運用要件
 
@@ -414,6 +418,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
