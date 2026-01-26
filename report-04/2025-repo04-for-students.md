@@ -253,9 +253,9 @@ flowchart TD
         datetime updated_at
     }
 
-    STORE ||--o{ STAFF 
-    STORE ||--o{ RESERVATION 
-    CUSTOMER ||--o{ RESERVATION 
+    STORE ||--o{ STAFF
+    STORE ||--o{ RESERVATION
+    CUSTOMER ||--o{ RESERVATION
     STAFF ||--o{ RESERVATION
   ````
 
@@ -398,6 +398,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
