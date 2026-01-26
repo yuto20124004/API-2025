@@ -279,10 +279,6 @@ flowchart TD
 
 | # | メソッド | パス        | リクエスト（要約）        | レスポンス（要約）          | ステータス               | 認可     | レート制限   |
 | - | ---- | --------- | ---------------- | ------------------ | ------------------- | ------ | ------- |
-例
-| 1 | GET  | /products | query: page,size | 200: list<Product> | 200/400/500         | public | 100/min |
-| 2 | POST | /orders   | body: OrderInput | 201: Order         | 201/400/401/403/500 | user   | 60/min  |
-
 | 1 | GET | /stores | query: page,size | 200: list<Store> | 200/400/500 | public | 100/min |
 | 2 | GET | /stores/{storeld} | path: storeId | 200: Store | 200/404/500 | public | 100/min |
 | 3 | GET | /reservations | query: storeId,date | 200: list<Reservaiton> | 200/400/401/403/500 | operator | 60/min |
@@ -418,6 +414,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
