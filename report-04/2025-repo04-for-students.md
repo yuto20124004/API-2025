@@ -331,7 +331,7 @@ flowchart TD
 ### 7.7 システム構成図（Mermaid例）
 
 ```mermaid
-flowchert LR
+flowchart LR
     Client[Web / Mobile Client] --->|HTTPS| APIGW[API Gateway]
 
     APIGW -->|REST| API[Reservation API<br/>(FastAPI)]
@@ -453,6 +453,7 @@ paths:
 - **セキュリティ**：認証・認可、エラー、ログ、秘密情報の扱いを明記。
 - **運用目線**：監視・バックアップ・障害時対応を具体化（RPO/RTO）。
 - **将来拡張**：バージョニング、レート制限、スキーマ進化に触れる。
+
 
 
 
