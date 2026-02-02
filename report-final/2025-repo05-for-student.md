@@ -44,14 +44,6 @@
 
 5.  **業務フロー・ユースケース**
     *   Mermaid図で**2件以上の主要ユースケース**を実装に対応づけ（ID付与）
-      ```mermaid
-flowchart TD
-  A[アクター] -->|入力| B[Web/モバイル]
-  B --> C[API Gateway]
-  C --> D[Service]
-  D --> E[(DB)]
-  C --> F[外部サービス]
-````
 - 予約作成
 ```mermaid
 flowchart TD
@@ -142,6 +134,7 @@ flowchart TD
 
 ## 参考
 - openapi.yaml / figs/architecture.png
+
 
 
 
